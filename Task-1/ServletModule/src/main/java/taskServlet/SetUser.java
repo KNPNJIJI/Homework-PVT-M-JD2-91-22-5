@@ -16,16 +16,9 @@ public class SetUser extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Read input from HTTP request
         final String name = req.getParameter("name");
         final String phone = req.getParameter("phone");
         final String email = req.getParameter("email");
-
-//        resp.setContentType("text/html");
-//        PrintWriter out = resp.getWriter();
-//        out.println("<html><head><title>Second Servlet</title></head>");
-//        out.println("<body><h1>Name: " + name + "</h1>");
-//        out.println("</body></html>");
 
         req.setAttribute("name", name);
         req.setAttribute("phone", phone);
