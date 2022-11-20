@@ -41,6 +41,13 @@ public class MyServlet extends HttpServlet{
         }
     }
 
+    public StringBuilder getImageURL(int num){
+        StringBuilder url = new StringBuilder();
+        for(int a=num; a>0; a/=10)
+            url.insert(0, "<img src=\"/task1/num/"+a%10+"-Number-PNG.png\" width=\"200\" height=\"200\">");
+        return url;
+    }
+
     public String checkUserAgent(String userAgent){
         String user = userAgent.toLowerCase();
         String browser = "";
@@ -81,8 +88,9 @@ public class MyServlet extends HttpServlet{
         PrintWriter out = response.getWriter();
         out.println("<html><head><title>First Servlet</title></head>");
         out.println("<body><h1> Приветствую пользователя " + browser + "</h1>");
-        out.println("<h2>Request Number: " + counter + "</h2>");
-        out.println("<a href=\"/task1/jsp/form.jsp\">Set user information</a>");
+        out.println("<h2>Request Number: </h2>");
+        out.println(getImageURL(counter));
+        out.println("<br><a href=\"/task1/jsp/form.jsp\">Set user information</a>");
         out.println("</body></html>");
 
         writeCounter(counter);
