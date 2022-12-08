@@ -1,0 +1,5 @@
+by\it\DAO\PersonDaoImpl.class
+by\it\loader\PersonLoader.class
+by\it\util\HibernateUtil.class
+by\it\DAO\PersonDao.class
+by\it\pojos\Person.class

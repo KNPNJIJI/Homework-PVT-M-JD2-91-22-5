@@ -14,6 +14,9 @@ public class PersonDaoImpl implements PersonDao{
     public Person findById(int id){
         return session.get(Person.class, id);
     };
+//    public Person findById(int id){
+//        return session.load(Person.class, id);
+//    };
 
     @Override
     public void create(Person person){
@@ -25,6 +28,13 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public void delete(Person person){
         session.beginTransaction();
+        session.delete(person);
+        session.getTransaction().commit();
+    };
+
+    public void createAndDelete(Person person){
+        session.beginTransaction();
+        session.saveOrUpdate(person);
         session.delete(person);
         session.getTransaction().commit();
     };
