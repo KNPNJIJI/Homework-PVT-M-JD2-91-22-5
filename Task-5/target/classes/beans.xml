@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+       default-init-method="init" default-destroy-method="destroy">
+
+    <!--bean name="person" class="academy.pojos.Person"
+          init-method="init" destroy-method="destroy"
+          factory-method="getPerson"
+
+          p:name="Vlad"
+    >
+    < p:address-ref="address" scope="prototype" >
+   </bean> -->
+   <bean name="address" class="academy.pojos.Address">
+   </bean>
+    <bean name="address1" class="academy.pojos.Address1">
+    </bean>
+
+   <context:annotation-config/>
+    <context:component-scan base-package="academy.pojos">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+
+</beans>
