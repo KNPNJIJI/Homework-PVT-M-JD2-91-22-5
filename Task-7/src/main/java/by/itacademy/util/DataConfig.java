@@ -3,6 +3,7 @@ package by.itacademy.util;
 import by.itacademy.model.Employee;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,7 +38,8 @@ public class DataConfig {
         hibernateProperties.put("debug", debug);
         hibernateProperties.put("hibernate.dialect", dialect);
         hibernateProperties.put("hibernate.format_sql", format);
-        hibernateProperties.put("hibernate.hdm2ddl.auto", hdm2ddlauto);
+        //hibernateProperties.put("hibernate.hdm2ddl.auto", hdm2ddlauto);
+        hibernateProperties.put(Environment.HBM2DDL_AUTO, "update");
         return hibernateProperties;
     }
 
@@ -45,7 +47,7 @@ public class DataConfig {
     public DataSource dataSource(
             @Value("${url}") String url,
             @Value("${driver}") String driverClassName,
-            @Value("${username}") String userName,
+            @Value("root") String userName,
             @Value("${password}") String password,
             @Value("${removeAbandonedOnBorrow}") boolean removeAbandonedOnBorrow,
             @Value("${initialSize}") int initialSize,
@@ -77,10 +79,4 @@ public class DataConfig {
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
-//    @Bean
-//    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
-//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-//        transactionManager.setSessionFactory(sessionFactory);
-//        return transactionManager;
-//    }
 }

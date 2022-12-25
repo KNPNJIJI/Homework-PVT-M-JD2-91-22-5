@@ -9,33 +9,28 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//@Repository
-@Service
-@Transactional
+@Repository
 public class EmployeeDoaImpl implements EmployeeDao{
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    @Transactional(transactionManager = "transactionManager")
     public void create(Employee employee){
         sessionFactory.getCurrentSession().saveOrUpdate(employee);
     };
 
     @Override
-    public Employee findById(long id){
+    public Employee findById(Integer id){
         return sessionFactory.getCurrentSession().get(Employee.class, id);
     };
 
     @Override
-    @Transactional(transactionManager = "transactionManager")
     public void update(Employee employee){
         create(employee);
     };
 
     @Override
-    @Transactional(transactionManager = "transactionManager")
     public void delete(Employee employee){
         Employee loadedEmployee = sessionFactory.getCurrentSession().load(Employee.class, employee.getId());
         sessionFactory.getCurrentSession().delete(loadedEmployee);

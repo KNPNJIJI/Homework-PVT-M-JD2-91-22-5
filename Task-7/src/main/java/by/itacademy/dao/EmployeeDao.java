@@ -8,7 +8,7 @@ public interface EmployeeDao {
 
     void create(Employee employee);
 
-    Employee findById(long id);
+    Employee findById(Integer id);
 
     void update(Employee employee);
 
